@@ -1,0 +1,864 @@
+:root {
+    /* Variables au lieu de taper toutes les couleurs a chaque fois c'est plus simple et permet d'être omogènes */
+
+    /* polices */
+    --bs-font-sans-serif: 'Plus Jakarta Sans', sans-serif;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+
+    /* Le thème clair par défaut. */
+    --pt-bg-base: #F9F8F4;
+    --pt-bg-surface: #FFFFFF;
+    --pt-text-color: #1a1a1a;
+    --pt-text-muted: #6c757d;
+    --pt-accent: #1a1a1a;
+    --pt-accent-text: #FFFFFF;
+    --pt-accent-orange: #F25C05;
+    --pt-border-color: rgba(0, 0, 0, 0.08);
+    --pt-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+    --pt-shadow-hover: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
+    --pt-nav-bg: rgba(255, 255, 255, 0.5);
+    --pt-nav-border: rgba(255, 255, 255, 0.35);
+    --pt-carousel-btn-bg: rgba(255, 255, 255, 0.35);
+    /* Background boutons carrousel mode Light */
+
+    --bs-body-bg: var(--pt-bg-base);
+    --bs-body-color: var(--pt-text-color);
+    --bs-border-color: var(--pt-border-color);
+    --bs-primary: var(--pt-accent);
+    --bs-border-radius: 20px;
+    --bs-border-radius-xl: 32px;
+    --bs-border-radius-lg: 24px;
+    --bs-border-radius-sm: 12px;
+}
+
+/* 
+    Configuration du mode sombre (Dark Mode).
+    Quand l'attribut data-bs-theme est à "dark", ces variables écrasent celles du :root.
+*/
+[data-bs-theme="dark"] {
+    --pt-bg-base: #0f0f11;
+    --pt-bg-surface: #18181b;
+    --pt-text-color: #ffffff;
+    --pt-text-muted: #a1a1aa;
+    --pt-accent: #ffffff;
+    --pt-accent-text: #000000;
+    --pt-accent-orange: #FF7043;
+    /* Orange un peu plus clair pour être lisible sur fond noir */
+    --pt-border-color: rgba(255, 255, 255, 0.08);
+    --pt-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    --pt-shadow-hover: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+    --pt-nav-bg: rgba(24, 24, 27, 0.5);
+    --pt-nav-border: rgba(255, 255, 255, 0.10);
+    --pt-carousel-btn-bg: rgba(0, 0, 0, 0.35);
+    /* Background boutons carrousel mode Dark */
+}
+
+/* Configuration de base pour le body. */
+body {
+    transition: background-color 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.5s;
+    -webkit-font-smoothing: antialiased;
+    /* Pour que le texte soit nickel sur Mac */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Le main prend toute la place qui reste pour coller le footer en bas */
+main {
+    flex: 1;
+    padding-top: 140px;
+    /* Pour pas être caché par la navbar fixe */
+}
+
+/* Style pour les titres */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -0.03em;
+    font-weight: 700;
+}
+
+.h5-footer {
+    font-size: 20px;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+/* Reset des liens pour enlever le soulignement par défaut */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+/* Styles pour mes boutons personnalisés. */
+.btn {
+    border-radius: 100px;
+    padding: 12px 32px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Effet de hover , il y'en a un peu partout sur tout le site ca permet d'ajouter de l'animation au survole d'un éléments 
+   ca rend le site plus beau et plus attrayant selon moi */
+
+.btn:hover {
+    color: var(--pt-accent-text);
+}
+
+/* Le bouton principal (sombre par défaut) */
+.btn-dark {
+    background-color: var(--pt-accent);
+    color: var(--pt-accent-text);
+    border: 1px solid var(--pt-accent);
+}
+
+/* 
+    L'effet de hover avec un dégradé orange.
+    Je crée un pseudo-élément ::before qui grossit quand on passe la souris.
+*/
+.btn-dark::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(242, 92, 5, 0.4) 0%, var(--pt-accent) 60%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.btn-dark:hover::before {
+    opacity: 1;
+    transform: scale(1) translate(10%, 10%);
+}
+
+.btn-dark:hover {
+    transform: translateY(-3px);
+    /* Le bouton remonte un peu */
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+    border-color: color-mix(in srgb, var(--pt-accent-orange) 50%, transparent);
+}
+
+
+
+
+
+/* 
+    La barre de navigation flottante.
+    J'ai utilisé backdrop-filter: blur(30px) pour l'effet de flou derrière , ca fait un effet de transparence et ca rend le site plus beau
+    un effet de glassmorphism utiliser par les plus grandes compagnies 
+    C'est centré, arrondi, et c'est fixé au-dessus du contenu (position: fixed;).
+*/
+.pt-navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 1200px;
+    border-radius: 100px;
+    padding: 0.5rem 1.25rem;
+    background: var(--pt-nav-bg);
+    backdrop-filter: blur(30px);
+    /* pour que le flou fonctionne sur les navigateurs 
+       utilisation de webkit car vous êtes sur macOS et vous utilisez peut être safari
+       j'utilise webkit dans de nombreux endroits pour que le moteur de rendu webkit fonctionne comme les autres navigateurs 
+       qui utilisent le moteur de rendu blink
+    */
+    -webkit-backdrop-filter: blur(30px);
+    border: 0.5px solid var(--pt-nav-border);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+    z-index: 1040;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+
+/* Les liens dans la navbar ("pilules") */
+.navbar-nav .nav-link {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--pt-text-color) !important;
+    margin: 0 4px;
+    padding: 6px 14px !important;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+/* 
+    Au survol ou si actif, on ajoute une petite teinte orange légère
+    et on change la couleur du texte.
+*/
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: rgba(242, 92, 5, 0.1);
+    color: var(--pt-accent-orange) !important;
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+[data-bs-theme="dark"] .navbar-nav .nav-link:hover,
+[data-bs-theme="dark"] .navbar-nav .nav-link.active {
+    background-color: rgba(255, 112, 67, 0.1);
+    color: var(--pt-accent-orange) !important;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    font-size: 1.5rem;
+}
+
+/* Les boutons icônes (lune, panier) */
+.nav-icon-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--pt-text-color);
+    position: relative;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.nav-icon-btn:hover {
+    background-color: var(--pt-bg-base);
+    color: var(--pt-accent-orange);
+    transform: scale(1.1);
+    border-color: var(--pt-border-color);
+}
+
+.nav-icon-btn i {
+    font-size: 1.4rem;
+}
+
+
+/* 
+    Les cartes de catégories sur la home.
+    Elles ont un effet de bordure et d'ombre au survol.
+*/
+.category-card {
+    background: var(--pt-bg-surface);
+    border: 1px solid var(--pt-border-color);
+    border-radius: 28px;
+    padding: 30px;
+    text-decoration: none;
+    color: var(--pt-text-color);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 220px;
+}
+
+/* L'effet de glow radiant derrière la carte au survol */
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(242, 92, 5, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.category-card:hover::before {
+    opacity: 1;
+    transform: scale(1) translate(10%, 10%);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--pt-accent-orange);
+    box-shadow: var(--pt-shadow-hover);
+}
+
+/* L'icône de la catégorie dans son rond */
+.category-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--pt-bg-base);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--pt-text-color);
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    background: var(--pt-accent-orange);
+    color: white;
+}
+
+.category-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.category-desc {
+    color: var(--pt-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* La flèche qui apparait quand on passe la souris */
+.category-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease-in-out;
+    font-size: 1.2rem;
+    padding: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--pt-accent-orange);
+    color: white;
+}
+
+.category-card:hover .category-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Les cartes produits */
+.product-card {
+    background-color: var(--pt-bg-surface);
+    border-radius: 36px;
+    padding: 10px;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid transparent;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Le conteneur de l'image produit */
+.product-img-wrapper {
+    background-color: var(--pt-bg-base);
+    border-radius: 26px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 26px;
+    filter: none;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--pt-shadow-hover);
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+    /* Zoom sur l'image */
+}
+
+
+
+
+
+/* Le badge pour la catégorie du produit  */
+.product-badge {
+    position: absolute;
+    margin: 10px;
+    left: 20px;
+    border: rgba(255, 255, 255, 0.35) 1px solid;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+[data-bs-theme="dark"] .product-badge {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+/* Le Footer */
+.pt-footer {
+    margin-top: 100px;
+    background-color: #111;
+    color: #888;
+    padding: 100px 0 40px;
+    border-radius: 60px 60px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.pt-footer h5 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.pt-footer a {
+    display: block;
+    margin-bottom: 0.8rem;
+    transition: 0.3s;
+}
+
+.pt-footer a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Offcanvas (menu mobile) */
+.offcanvas {
+    border-radius: 30px 0 0 30px !important;
+    border: none;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Items du panier */
+.cart-item {
+    transition: 0.3s;
+    background-color: var(--pt-bg-surface);
+}
+
+.cart-item:hover {
+    background-color: var(--pt-bg-base);
+}
+
+/* 
+    Media Queries pour le Responsive (Mobile < 991px).
+    Ici on change complètement la navbar pour qu'elle devienne un menu plein écran.
+*/
+@media (max-width: 991px) {
+    .pt-navbar {
+        width: 100%;
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 0.8rem 1.2rem;
+        border-radius: 0;
+        max-width: none;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+    }
+
+
+    .pt-navbar.scrolled {
+        width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+        transform: none;
+        max-width: none;
+        padding: 0.8rem 1.2rem;
+    }
+
+
+    /* Menu plein écran */
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--pt-bg-base);
+        z-index: -1;
+        padding-top: 120px;
+        padding-bottom: 40px;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+    }
+
+    .navbar-collapse.show {
+        display: flex;
+        animation: menuReveal 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .navbar-collapse.collapsing {
+        display: flex;
+        height: 100vh !important;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding-top: 120px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-collapse.collapsing.show {
+        opacity: 1;
+    }
+
+    @keyframes menuReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+        gap: 40px;
+        /* Espacement augmenté */
+        margin-top: 2rem;
+    }
+
+    /* Les liens deviennent énormes pour être thumb-friendly */
+    .navbar-nav .nav-link {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.2;
+        /* Padding constant pour éviter le glitch de redimensionnement au hover */
+        padding: 10px 40px !important;
+        margin: 0 auto;
+        display: inline-block;
+        width: fit-content;
+        border-radius: 50px;
+
+        color: var(--pt-text-color) !important;
+        opacity: 0;
+        animation: slideInUp 0.5s forwards;
+
+        /* Transition douce pour la couleur et le fond */
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        /* On ne change plus la taille ni le display ici, juste l'apparence */
+        background-color: rgba(242, 92, 5, 0.1) !important;
+        color: var(--pt-accent-orange) !important;
+        transform: none;
+    }
+
+
+
+    .hero-card h1 {
+        font-size: 3rem;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Override des styles Bootstrap pour l'accordéon */
+.accordion-button:not(.collapsed) {
+    color: var(--pt-accent-orange) !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.sidebar-link {
+    transition: color 0.2s ease;
+}
+
+.sidebar-link:hover {
+    color: var(--pt-accent-orange) !important;
+}
+
+/* Styles pour les champs de formulaire (focus orange) */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--pt-accent-orange);
+    box-shadow: 0 0 0 0.25rem rgba(242, 92, 5, 0.25);
+}
+
+.form-range::-webkit-slider-thumb {
+    background-color: var(--pt-accent-orange);
+}
+
+.form-range::-moz-range-thumb {
+    background-color: var(--pt-accent-orange);
+}
+
+.form-range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(242, 92, 5, 0.25);
+}
+
+.form-range:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(242, 92, 5, 0.25);
+}
+
+
+
+
+/* Carousel Hero Card sizing */
+.hero-card {
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.3s ease-in-out;
+}
+
+#hero-slide-1 {
+    background-image: url('../assets/imgs/Iphone17.jpg');
+    background-position: top center;
+}
+
+#hero-slide-2 {
+    background-image: url('../assets/imgs/Samsung-S99H-OLED-TV.jpg');
+}
+
+@media (max-width: 991px) {
+    #hero-slide-1 {
+        background-image: url('../assets/imgs/iphone-17-pro.png');
+    }
+
+    #hero-slide-2 {
+        background-image: url('../assets/imgs/S99H_phone.png');
+    }
+
+    .hero-card {
+        min-height: 500px;
+    }
+}
+
+.product-info {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* 
+    Styles spécifiques à la Sidebar de la boutique.
+    Pour un design plus propre et moderne, comme demandé.
+*/
+
+/* Le widget de Recherche */
+.shop-sidebar .input-group {
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--pt-border-color);
+    border-radius: 8px;
+    /* Un peu arrondi mais pas trop */
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.shop-sidebar .input-group:focus-within {
+    border-color: var(--pt-accent-orange);
+}
+
+.shop-sidebar .form-control {
+    border: none;
+    background: transparent;
+    padding-left: 1rem;
+}
+
+.shop-sidebar .form-control:focus {
+    box-shadow: none;
+    /* On gère le focus sur le parent */
+}
+
+.shop-sidebar .btn-outline-secondary {
+    border: none;
+    color: var(--pt-text-muted);
+    background: transparent;
+}
+
+.shop-sidebar .btn-outline-secondary:hover {
+    color: var(--pt-text-color);
+}
+
+
+/* Les liens de catégories */
+.sidebar-link {
+    color: var(--pt-text-muted);
+    font-weight: 500;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.sidebar-link:hover {
+    color: var(--pt-text-color) !important;
+    transform: translateX(5px);
+    /* Petit mouvement sympa */
+}
+
+/* Les badges de compte (le cercle gris avec le nombre) */
+.count-badge {
+    background-color: #E5E7EB;
+    /* Gris clair */
+    color: #374151;
+    /* Gris foncé */
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    /* Parfaitement rond */
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+[data-bs-theme="dark"] .count-badge {
+    background-color: #27272a;
+    color: #a1a1aa;
+}
+
+/* Le Slider de prix */
+.form-range {
+    height: 6px;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    background: #E5E7EB;
+    border-radius: 10px;
+}
+
+[data-bs-theme="dark"] .form-range::-webkit-slider-runnable-track {
+    background: #27272a;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--pt-accent-orange);
+    /* Le rond orange */
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+    /* Pour centrer verticalement */
+}
+
+
+/* Les Tags pour les filtres */
+.tag-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 50px;
+    /* Forme de pilule */
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--pt-text-muted);
+    background-color: transparent;
+    border: 1px solid var(--pt-border-color);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+
+/* Styles pour les boutons de navigation du carrousel Homepage */
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--pt-carousel-btn-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 50%;
+    opacity: 1;
+    margin: 0 50px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-carousel .carousel-control-prev:hover,
+.hero-carousel .carousel-control-next:hover {
+    transform: translateY(-50%) scale(1.1);
+    /* On garde le même style glassmorphism au hover */
+    background-color: var(--pt-carousel-btn-bg);
+    color: white;
+    border-color: var(--pt-accent-orange);
+}
+
+/* Force les flèches à rester blanches dans tous les modes */
+.hero-carousel .carousel-control-prev-icon,
+.hero-carousel .carousel-control-next-icon {
+    filter: invert(0) grayscale(0) !important;
+}
+
+.tag-badge:hover {
+    border-color: var(--pt-accent-orange);
+    color: var(--pt-accent-orange);
+    background-color: rgba(242, 92, 5, 0.05);
+}
+
+/* Le bouton Filtrer */
+.shop-sidebar .btn-outline-dark {
+    border-radius: 50px;
+    padding: 10px 0;
+    font-weight: 600;
+    text-transform: none;
+}

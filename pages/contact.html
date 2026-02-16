@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nous contacter | Primetel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body id="contact-body">
+
+    <nav class="navbar navbar-expand-lg fixed-top pt-navbar">
+        <div class="container-fluid px-2">
+            <a class="navbar-brand fw-bold fs-3" href="../index.html">Primetel.</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="boutique.html">Boutique</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="a_propos.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <button id="themeToggle" class="btn btn-link nav-icon-btn p-0">
+                    <i class="bi bi-moon fs-5"></i>
+                </button>
+                <a href="panier.html" class="btn btn-link nav-icon-btn p-0">
+                    <i class="bi bi-bag fs-5"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <main id="app-content" class="pt-5 mt-5">
+
+        <section id="contact-page" class="page-section fade-in">
+            <div class="container py-5">
+                <div class="row g-5">
+
+                    <!-- Colonne de gauche : Informations de contact -->
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-4">Nous contacter </h1>
+                        <p class="lead text-muted mb-5">Vous avez des questions sur un produit, votre commande ou toutes
+                            autres demandes ? </p>
+
+                        <div class="d-flex flex-column gap-4 mb-5">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                    style="width: 50px; height: 50px;">
+                                    <i class="bi bi-envelope fs-5"></i>
+                                </div>
+                                <div>
+                                    <h2 class="h5 fw-bold mb-1">Nous envoyer un email</h2>
+                                    <p class="text-muted mb-0">support@primetel.com</p>
+                                    <p class="text-muted">ventes@primetel.com</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                    style="width: 50px; height: 50px;">
+                                    <i class="bi bi-telephone fs-5"></i>
+                                </div>
+                                <div>
+                                    <h2 class="h5 fw-bold mb-1">Nous appeler</h2>
+                                    <p class="text-muted mb-0">+33 3 00 00 00 00</p>
+                                    <p class="text-muted small">Lun-Ven, 9:00 - 18:00</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-start gap-3">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=IUT+Informatique,+Amiens"
+                                    target="_blank" class="text-decoration-none text-white">
+                                    <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                        style="width: 50px; height: 50px;">
+                                        <i class="bi bi-geo-alt fs-5"></i>
+                                    </div>
+                                </a>
+                                <div>
+                                    <h2 class="h5 fw-bold mb-1">Nos magasins</h2>
+                                    <p class="text-muted mb-0">IUT Informatique,</p>
+                                    <p class="text-muted">80000 , Amiens</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonne de droite : Formulaire -->
+                    <div class="col-lg-6">
+                        <div class="card border-0 rounded-4 p-5 h-100" style="background-color: var(--pt-bg-surface)">
+                            <h2 class="h3 fw-bold mb-4">Envoyer un message</h2>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control rounded-4 border-0" id="nameInput"
+                                                placeholder="Nom">
+                                            <label for="nameInput">Nom</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control rounded-4 border-0" id="emailInput"
+                                                placeholder="Email">
+                                            <label for="emailInput">Email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <select class="form-select rounded-4 border-0" id="subjectSelect">
+                                        <option selected>Questions générale</option>
+                                        <option value="1">Support de commande</option>
+                                        <option value="2">Support de produit</option>
+                                        <option value="3">Retours</option>
+                                    </select>
+                                    <label for="subjectSelect">Sujet</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <textarea class="form-control rounded-4 border-0" placeholder="Message"
+                                        id="messageTextarea" style="height: 150px"></textarea>
+                                    <label for="messageTextarea">Message</label>
+                                </div>
+                                <button type="submit" class="btn btn-dark btn-lg rounded-pill w-100 py-3">Envoyer
+                                    Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="pt-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <a href="#" class="navbar-brand fw-bold fs-3 text-white mb-4 d-block">Primetel.</a>
+                    <p class="small">Des produits premium de qualité pour un mode de vie moderne.</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h2 class="h5-footer">Boutique</h2>
+                    <a href="boutique.html">Tous les produits</a>
+                    <a href="boutique.html?filter=phones">Téléphones</a>
+                    <a href="boutique.html?filter=laptops">Ordinateurs</a>
+                    <a href="boutique.html?filter=audio">Audio</a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h2 class="h5-footer">Support</h2>
+                    <a href="contact.html">Contactez-nous</a>
+                    <a href="#">Politique de livraison</a>
+                    <a href="#">Retours</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h2 class="h5-footer">Restez informé</h2>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control rounded-pill bg-dark border-secondary text-white"
+                            placeholder="Entrez votre email">
+                        <button class="btn btn-light rounded-pill px-4 flex-shrink-0">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-top border-secondary mt-5 pt-4 text-center small">
+                <p>&copy; 2025 Primetel Inc. Tout droit reservé.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javascripts/functions.js"></script>
+</body>
+
+</html>

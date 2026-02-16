@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primetel | Electronique Premium</title>
+
+    <!-- Google Fonts pour les polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <!-- Fichier CSS pour personnaliser tout ce que Bootstrap fait par défaut -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body id="home-body">
+
+    <!-- La barre de navigation (Navbar). Elle reste collée en haut (fixed-top) pour qu'on puisse toujours naviguer même quand on scrolle. -->
+    <nav class="navbar navbar-expand-lg fixed-top pt-navbar">
+        <div class="container-fluid px-2">
+            <!-- Le logo de la marque ( texte en gras ) -->
+            <a class="navbar-brand fw-bold fs-3" href="index.html">Primetel.</a>
+
+            <!-- Le bouton "hamburger" pour le mobile. Il s'affiche que si l'écran est petit. -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Les liens du menu. J'ai utilisé flexbox pour tout centrer proprement -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!-- J'ajoute la classe 'active' ici pour montrer qu'on est sur cette page -->
+                        <a class="nav-link active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/boutique.html">Boutique</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/a_propos.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Les boutons à droite : le mode sombre/clair et le panier. -->
+            <div class="d-flex align-items-center gap-2">
+                <button id="themeToggle" class="btn btn-link nav-icon-btn p-0">
+                    <i class="bi bi-moon fs-5"></i>
+                </button>
+                <a href="pages/panier.html" class="btn btn-link nav-icon-btn p-0">
+                    <i class="bi bi-bag fs-5"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Le contenu principal de la page. -->
+    <main id="app-content" class="pt-5 mt-5">
+
+        <section id="home-page" class="page-section fade-in">
+            <h1 class="visually-hidden">Primetel - Électronique Premium</h1>
+
+            <!-- Le carrousel en haut de page (le Hero slider) , permet d'afficher plusieurs trucs en haut de base utilise pour afficher des produits. -->
+            <div id="heroCarousel" class="carousel slide hero-carousel mb-5" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-4 overflow-hidden container-fluid px-4">
+                    <!-- Premier slide : Audio (Image de fond) -->
+                    <div class="carousel-item active">
+                        <div id="hero-slide-1"
+                            class="hero-card d-flex flex-column justify-content-end p-3 p-lg-5 rounded-4 position-relative">
+                            <!-- Overlay sombre pour la lisibilité -->
+                            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded-4"></div>
+
+                            <!-- Contenu aligné en bas à GAUCHE -->
+                            <div class="w-100 position-relative z-1 pb-0 ps-2 pb-lg-5 ps-lg-5">
+                                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-end w-100">
+                                    <div class="text-start text-white me-lg-4 mb-3 mb-lg-0">
+                                        <span
+                                            class="badge rounded-pill bg-white text-dark mb-3 px-3 py-2 text-uppercase tracking-wider">Nouvelle
+                                            Arrivée</span>
+                                        <!-- Police réduite (h2/display-6) -->
+                                        <h2 class="fw-bold mb-0 display-6">Iphone 17 Pro Max</h2>
+                                    </div>
+                                    <a href="pages/boutique.html" class="btn btn-dark rounded-pill px-4">Voir le
+                                        produit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deuxième slide : Vision (Image de fond) -->
+                    <div class="carousel-item">
+                        <div id="hero-slide-2"
+                            class="hero-card d-flex flex-column justify-content-end p-3 p-lg-5 rounded-4 position-relative">
+                            <!-- Overlay sombre pour la lisibilité -->
+                            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded-4"></div>
+
+                            <!-- Contenu aligné en bas à GAUCHE -->
+                            <div class="w-100 position-relative z-1 pb-0 ps-2 pb-lg-5 ps-lg-5">
+                                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-end w-100">
+                                    <div class="text-start text-white me-lg-4 mb-3 mb-lg-0">
+                                        <span
+                                            class="badge rounded-pill bg-white text-dark mb-3 px-3 py-2 text-uppercase tracking-wider">Précommande</span>
+                                        <!-- Police réduite (h2/display-6) -->
+                                        <h2 class="fw-bold mb-0 display-6">Samsung S99H</h2>
+                                    </div>
+                                    <a href="pages/boutique.html"
+                                        class="btn btn-dark rounded-pill px-4">Précommander</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Les boutons pour changer de slide manuellement -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <!-- Section des catégories. -->
+            <div class="container mb-5">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <h2 class="fw-bold m-0">Parcourir les Catégories</h2>
+                    <a href="pages/boutique.html" class="text-decoration-none text-body">Tout voir</a>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Catégorie Téléphones -->
+                    <div class="col-lg-3 col-md-6">
+                        <a href="pages/boutique.html?filter=phones" class="category-card">
+                            <div class="category-icon">
+                                <i class="bi bi-phone"></i>
+                            </div>
+                            <h3 class="category-title">Téléphones</h3>
+                            <p class="category-desc">Derniers appareils phares avec caméras de pointe.</p>
+                            <div class="category-arrow">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Catégorie Ordis -->
+                    <div class="col-lg-3 col-md-6">
+                        <a href="pages/boutique.html?filter=laptops" class="category-card">
+                            <div class="category-icon">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+                            <h3 class="category-title">Ordinateurs</h3>
+                            <p class="category-desc">Des machines puissantes pour le travail et la créativité.</p>
+                            <i class="bi bi-arrow-right category-arrow"></i>
+                        </a>
+                    </div>
+                    <!-- Catégorie Audio -->
+                    <div class="col-lg-3 col-md-6">
+                        <a href="pages/boutique.html?filter=audio" class="category-card">
+                            <div class="category-icon">
+                                <i class="bi bi-headphones"></i>
+                            </div>
+                            <h3 class="category-title">Audio</h3>
+                            <p class="category-desc">Son immersif avec suppression du bruit premium.</p>
+                            <i class="bi bi-arrow-right category-arrow"></i>
+                        </a>
+                    </div>
+                    <!-- Catégorie Accessoires -->
+                    <div class="col-lg-3 col-md-6">
+                        <a href="pages/boutique.html?filter=wearables" class="category-card">
+                            <div class="category-icon">
+                                <i class="bi bi-smartwatch"></i>
+                            </div>
+                            <h3 class="category-title">Accessoires</h3>
+                            <p class="category-desc">Restez connecté et suivez votre santé avec style.</p>
+                            <i class="bi bi-arrow-right category-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section des produits tendances. -->
+            <div class="container mb-5">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <h2 class="fw-bold m-0">Tendances</h2>
+                    <a href="pages/boutique.html"
+                        class="text-decoration-none link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-100-hover text-body">Tout
+                        voir</a>
+                </div>
+                <div class="row g-4" id="trending-grid">
+                    <!-- Produit 1 -->
+                    <div class="col-md-3">
+                        <div class="product-card h-100">
+                            <span class="product-badge">Téléphone</span>
+                            <a href="#" class="text-decoration-none text-body">
+                                <div class="product-img-wrapper">
+                                    <img src="assets/imgs/iphone-17-pro.png" class="img-fluid" alt="iPhone 17 Pro Max">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="h5 fw-bold mb-1">Iphone 17 Pro Max</h3>
+                                    <p class="text-muted mb-0 fw-semibold">€1299</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Produit 2 -->
+                    <div class="col-md-3">
+                        <div class="product-card h-100">
+                            <span class="product-badge">Téléphone</span>
+                            <a href="#" class="text-decoration-none text-body">
+                                <div class="product-img-wrapper">
+                                    <img src="assets/imgs/S25Ultra.jpg" class="img-fluid" alt="Samsung S25 Ultra">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="h5 fw-bold mb-1">Samsung S25 Ultra</h3>
+                                    <p class="text-muted mb-0 fw-semibold">€1399</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Produit 3 -->
+                    <div class="col-md-3">
+                        <div class="product-card h-100">
+                            <span class="product-badge">Ordinateur</span>
+                            <a href="#" class="text-decoration-none text-body">
+                                <div class="product-img-wrapper">
+                                    <img src="assets/imgs/b6U.jpg" class="img-fluid" alt="Samsung Galaxy Book 6 Pro">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="h5 fw-bold mb-1">Samsung Galaxy Book 6 Pro</h3>
+                                    <p class="text-muted mb-0 fw-semibold">€1299</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Produit 4 -->
+                    <div class="col-md-3">
+                        <div class="product-card h-100">
+                            <span class="product-badge">Accessoire</span>
+                            <a href="#" class="text-decoration-none text-body">
+                                <div class="product-img-wrapper">
+                                    <img src="assets/imgs/samsungxr.jpg" class="img-fluid" alt="Samsung XR">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="h5 fw-bold mb-1">Samsung XR</h3>
+                                    <p class="text-muted mb-0 fw-semibold">€1999</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Le Footer de page. On y met les liens utiles, la newsletter et les infos légales. ( W3C )-->
+    <footer class="pt-footer">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Colonne info marque -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="#" class="navbar-brand fw-bold fs-3 text-white mb-4 d-block">Primetel.</a>
+                    <p class="small">Des produits premium de qualité pour un mode de vie moderne.</p>
+                </div>
+                <!-- Colonne liens boutique -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h2 class="h5-footer">Boutique</h2>
+                    <a href="pages/boutique.html">Tous les produits</a>
+                    <a href="pages/boutique.html?filter=phones">Téléphones</a>
+                    <a href="pages/boutique.html?filter=laptops">Ordinateurs</a>
+                    <a href="pages/boutique.html?filter=audio">Audio</a>
+                </div>
+                <!-- Colonne support -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h2 class="h5-footer">Support</h2>
+                    <a href="pages/contact.html">Contactez-nous</a>
+                    <a href="#">Politique de livraison</a>
+                    <a href="#">Retours</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <!-- Colonne newsletter -->
+                <div class="col-lg-4 col-md-6">
+                    <h2 class="h5-footer">Restez informé</h2>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control rounded-pill bg-dark border-secondary text-white"
+                            placeholder="Entrez votre email">
+                        <button class="btn btn-light rounded-pill px-4 flex-shrink-0">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-top border-secondary mt-5 pt-4 text-center small">
+                <p>&copy; 2025 Primetel Inc. Tout droit reservé.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Bootstrap pour faire fonctionner la navbar et les composants interactifs -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Mon petit script JS pour faire fonctionner les trucs dynamiques -->
+    <script src="javascripts/functions.js"></script>
+</body>
+
+</html>
